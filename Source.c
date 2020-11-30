@@ -12,11 +12,11 @@ void connectivity(int edges, int vertices) {
 }
 
 int main(void) {
-    int directed = 0;// ориентированность графа
-    int is_weight = 0;// взвешенность графа
+    int directed = 0;// РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅРѕСЃС‚СЊ РіСЂР°С„Р°
+    int is_weight = 0;// РІР·РІРµС€РµРЅРЅРѕСЃС‚СЊ РіСЂР°С„Р°
     int c;
-    int vertices = 0;// кол-во вершин кружки
-    int edges = 0;// кол-во ребер палочки
+    int vertices = 0;// РєРѕР»-РІРѕ РІРµСЂС€РёРЅ РєСЂСѓР¶РєРё
+    int edges = 0;// РєРѕР»-РІРѕ СЂРµР±РµСЂ РїР°Р»РѕС‡РєРё
     int del = -1;
     int exit = 0;
     int num = 0;
@@ -29,14 +29,14 @@ int main(void) {
         printf("No such File!!!");
     }
     else {
-        printf("File is read successfully!\n"); // подсчет кружочков вершин
+        printf("File is read successfully!\n"); // РїРѕРґСЃС‡РµС‚ РєСЂСѓР¶РѕС‡РєРѕРІ РІРµСЂС€РёРЅ
         while (!feof(MatrF)) {
             if ((fgetc(MatrF)) == ';') {
                 vertices++;
             }
         }
         fclose(MatrF);
-        FILE* MatrFile = fopen("matr.txt", "r");  //подсчет палочек ребер
+        FILE* MatrFile = fopen("matr.txt", "r");  //РїРѕРґСЃС‡РµС‚ РїР°Р»РѕС‡РµРє СЂРµР±РµСЂ
         while ((c = fgetc(MatrFile)) != ';') {
             if (c == ',')
                 edges++;
@@ -54,7 +54,7 @@ int main(void) {
 
             if (del!= -1)
             {
-                MatrFile = fopen("matr.txt", "r");  // считывание всей матрицы
+                MatrFile = fopen("matr.txt", "r");  // СЃС‡РёС‚С‹РІР°РЅРёРµ РІСЃРµР№ РјР°С‚СЂРёС†С‹
                 for (int i = 0; i < vertices; i++) {
                     int j = 0;
                     while ((c = fgetc(MatrFile)) != ';')
@@ -62,7 +62,7 @@ int main(void) {
                 }
                 fclose(MatrFile);
 
-                MatrFile = fopen("matr.txt", "w");  // запись в матрицу
+                MatrFile = fopen("matr.txt", "w");  // Р·Р°РїРёСЃСЊ РІ РјР°С‚СЂРёС†Сѓ
                 for (int i = 0; i < vertices; i++) {
                     int j = 0;
                     while (j < edges) {
@@ -94,7 +94,7 @@ int main(void) {
             }
 
         
-        MatrFile = fopen("matr.txt", "r");  // считывание всей матрицы
+        MatrFile = fopen("matr.txt", "r");  // СЃС‡РёС‚С‹РІР°РЅРёРµ РІСЃРµР№ РјР°С‚СЂРёС†С‹
         for (int i = 0; i < vertices; i++) {
             int j = 0;
             while ((c = fgetc(MatrFile)) != ';')
@@ -104,7 +104,7 @@ int main(void) {
 
 
 
-        for (int i = 0; i < vertices; i++) {    //првоерка на ориентированность графа и взвешенность
+        for (int i = 0; i < vertices; i++) {    //РїСЂРІРѕРµСЂРєР° РЅР° РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅРѕСЃС‚СЊ РіСЂР°С„Р° Рё РІР·РІРµС€РµРЅРЅРѕСЃС‚СЊ
             for (int j = 0; j < edges; j++) {
                 printf("%d ", matrix[i][j]);
                 if (matrix[i][j] > 1)
@@ -114,7 +114,7 @@ int main(void) {
             }
             printf("\n");
         }
-        char weight[edges];// массив взвешенных узлов
+        char weight[edges];// РјР°СЃСЃРёРІ РІР·РІРµС€РµРЅРЅС‹С… СѓР·Р»РѕРІ
         if (is_weight) {
             for (int j = 0; j < edges; j++) {
                 for (int i = 0; i < edges; i++) {
@@ -128,10 +128,10 @@ int main(void) {
         
 
 
-            char VertNames[vertices]; // массив вершин
+            char VertNames[vertices]; // РјР°СЃСЃРёРІ РІРµСЂС€РёРЅ
             for (int i = 0; i < vertices; i++)
                 VertNames[i] = 'a' + i;
-            char Connect[edges][2];// массив соединенных вершин
+            char Connect[edges][2];// РјР°СЃСЃРёРІ СЃРѕРµРґРёРЅРµРЅРЅС‹С… РІРµСЂС€РёРЅ
             for (int j = 0; j < edges; j++) {
                 int k = 0;
                 for (int i = 0; i < vertices; i++) {
@@ -197,7 +197,7 @@ int main(void) {
                     system("cygstart graph.png");
 
                     putchar('\n');
-                    connectivity(edges, vertices);// чек на связность
+                    connectivity(edges, vertices);// С‡РµРє РЅР° СЃРІСЏР·РЅРѕСЃС‚СЊ
                     printf("------------------------------------------\n");
                     break;
 
@@ -210,7 +210,7 @@ int main(void) {
                    
                     break;
 
-                case 3: //степень вершины - это число выходящих из нее рёбер
+                case 3: //СЃС‚РµРїРµРЅСЊ РІРµСЂС€РёРЅС‹ - СЌС‚Рѕ С‡РёСЃР»Рѕ РІС‹С…РѕРґСЏС‰РёС… РёР· РЅРµРµ СЂС‘Р±РµСЂ
                     
                     for (int j = 0; j < vertices; j++) {
                         for (int k = 0; k < 2; k++)
