@@ -2,21 +2,12 @@
 #include <stdlib.h>
 #include <windows.h>
 
-void connectivity(int edges, int vertices) {
-    if (edges > (((vertices - 1) * (vertices - 2)) / 2)) {
-        printf("This graph is connected\n");
-    }
-    else {
-        printf("This graph is not connected\n");
-    }
-}
-
 int main(void) {
     int directed = 0;// ориентированность графа
     int is_weight = 0;// взвешенность графа
     int c;
-    int vertices = 0;// кол-во вершин кружки
-    int edges = 0;// кол-во ребер палочки
+    int vertices = 0;// кол-во вершин (кружки)
+    int edges = 0;// кол-во ребер (палочки)
     int del = -1;
     int exit = 0;
     int num = 0;
@@ -29,29 +20,24 @@ int main(void) {
         printf("No such File!!!");
     }
     else {
-        printf("File is read successfully!\n"); // подсчет кружочков вершин
-        while (!feof(MatrF)) {
+        printf("File is read successfully!\n"); 
+        while (!feof(MatrF)) {                // подсчет вершин (кружочки)
             if ((fgetc(MatrF)) == ';') {
                 vertices++;
             }
         }
         fclose(MatrF);
-        FILE* MatrFile = fopen("matr.txt", "r");  //подсчет палочек ребер
-        while ((c = fgetc(MatrFile)) != ';') {
+        FILE* MatrFile = fopen("matr.txt", "r");  
+        while ((c = fgetc(MatrFile)) != ';') {      //подсчет ребер (палочки)
             if (c == ',')
                 edges++;
         }
         edges++;
         fclose(MatrFile);
-      
-        
-      
-        
+ 
         while (exit == 0)
         {
             int matrix[vertices][edges];
-
-
             if (del!= -1)
             {
                 MatrFile = fopen("matr.txt", "r");  // считывание всей матрицы
@@ -83,17 +69,10 @@ int main(void) {
                     }
                 }
                 fclose(MatrFile);
-
-             
-               
-                
                 --edges;
                 del = -1;
-          
-            
             }
 
-        
         MatrFile = fopen("matr.txt", "r");  // считывание всей матрицы
         for (int i = 0; i < vertices; i++) {
             int j = 0;
@@ -101,8 +80,6 @@ int main(void) {
                 fscanf(MatrFile, "%d", &matrix[i][j++]);
         }
         fclose(MatrFile);
-
-
 
         for (int i = 0; i < vertices; i++) {    //првоерка на ориентированность графа и взвешенность
             for (int j = 0; j < edges; j++) {
@@ -125,9 +102,6 @@ int main(void) {
             }
         }
         
-        
-
-
             char VertNames[vertices]; // массив вершин
             for (int i = 0; i < vertices; i++)
                 VertNames[i] = 'a' + i;
@@ -168,9 +142,6 @@ int main(void) {
                 system("dot -Tpng graph.dot -o graph.png");
             }
 
-
-            
-            
                 printf("\n");
                 for (int i = 0; i < edges; i++) {
                     printf("%d) ", i);
@@ -182,7 +153,6 @@ int main(void) {
                     }
                     printf("\n");
                 }
-
 
                 putchar('\n');
                 printf("Choose:\n1)visualize graph\n2)delete edge\n3)Search for the vertice with maximum degree\n4)exit\n>>");
@@ -197,7 +167,6 @@ int main(void) {
                     system("cygstart graph.png");
 
                     putchar('\n');
-                    connectivity(edges, vertices);// чек на связность
                     printf("------------------------------------------\n");
                     break;
 
